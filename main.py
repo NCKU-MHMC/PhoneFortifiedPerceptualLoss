@@ -3,9 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchcontrib.optim import SWA
-from torch.nn.utils import rnn, clip_grad_norm_
+from torch.nn.utils import rnn
+from torch.nn.utils.clip_grad import clip_grad_norm_
 from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
+from torch.utils.tensorboard.writer import SummaryWriter
 
 import os
 import sys
@@ -22,7 +23,7 @@ from multiprocessing import Pool
 
 from dataset import VoiceBankDemandDataset # please make your own "dataset.py" including a torch Dataset module.
 from models import DeepConvolutionalUNet
-from perceptual.losses import PerceptualLoss
+from perceptual_loss.losses import PerceptualLoss
 from optimizers import RAdam
 from utils import rnn_collate
 
@@ -114,13 +115,13 @@ if __name__ == '__main__':
 
     # create loaders
     train_dataloader = DataLoader(
-        # put your train dataset here,
+        VoiceBankDemandDataset(""),
         batch_size=args.batch_size,
         shuffle=True,
         num_workers=args.num_workers
     )
     val_dataloader = DataLoader(
-        # put your validation dataset here,
+        VoiceBankDemandDataset(""),
         batch_size=args.batch_size,
         shuffle=False,
         collate_fn=rnn_collate,

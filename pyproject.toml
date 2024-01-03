@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "phonefortifiedperceptualloss"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+torch = "^2.1.2"
+torchcontrib = "^0.0.2"
+torchaudio = "^2.1.2"
+pesq = "^0.0.4"
+colorama = "^0.4.6"
+geomloss = "^0.2.6"
+tensorboard = "^2.15.1"
+packaging = "^23.2"
+fairseq = "^0.12.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pyright = "^1.1.344"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

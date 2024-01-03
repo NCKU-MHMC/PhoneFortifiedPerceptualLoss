@@ -8,15 +8,15 @@ import sys
 
 class VoiceBankDemandDataset(Dataset):
     def __init__(self, data_dir, hop_length=128):
-        self.clean_path = self.get_clean(data_dir)
-        self.noisy_path = self.get_noisy(data_dir)
+        # self.clean_path = self.get_clean(data_dir)
+        # self.noisy_path = self.get_noisy(data_dir)
         self.hop_length = hop_length
 
-    def get_clean(self, root):
-        raise NotImplementedError
+    # def get_clean(self, root):
+    #     raise NotImplementedError
 
-    def get_noisy(self, root):
-        raise NotImplementedError
+    # def get_noisy(self, root):
+    #     raise NotImplementedError
 
     def padding(self, x):
         len_x = x.size(-1)
@@ -28,11 +28,14 @@ class VoiceBankDemandDataset(Dataset):
         return 2 * (x - x.min()) / (x.max() - x.min()) - 1
 
     def __len__(self):
-        return len(self.noisy_path)
+        # return len(self.noisy_path)
+        return 1000
 
     def __getitem__(self, idx):
-        clean = torchaudio.load(self.clean_path[idx])[0]
-        noisy = torchaudio.load(self.noisy_path[idx])[0]
+        clean = torch.randn(32000)
+        noisy = torch.randn(32000)
+        # clean = torchaudio.load(self.clean_path[idx])[0]
+        # noisy = torchaudio.load(self.noisy_path[idx])[0]
 
         noisy = self.normalize(noisy)
         length = clean.size(-1)

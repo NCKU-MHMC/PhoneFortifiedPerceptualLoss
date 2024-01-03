@@ -234,10 +234,12 @@ class DeepConvolutionalUNet(nn.Module):
             normalized=False, 
             onesided=True,
             pad_mode='reflect',
-            window=torch.hann_window(self.n_fft).to(x.device)
+            window=torch.hann_window(self.n_fft).to(x.device),
+            return_complex=False,
         )
 
     def istft(self, x):
+        x = torch.complex(x[...,0], x[...,1])
         return torch.istft(
             x, 
             n_fft=self.n_fft, 
@@ -247,7 +249,8 @@ class DeepConvolutionalUNet(nn.Module):
             normalized=False, 
             onesided=True, 
             window=torch.hann_window(self.n_fft).to(x.device),
-            length=(x.size(2) - 1) * self.n_fft // 4
+            length=(x.size(2) - 1) * self.n_fft // 4,
+            
         )
 
     def complex_multiply(self, m, y):
