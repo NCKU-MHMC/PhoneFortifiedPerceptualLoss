@@ -1,14 +1,10 @@
 # Phone Fortified Perceptual Loss for Speech Enhancement
-This is the official implementation of our paper *"Improving Perceptual Quality by Phone-Fortified Perceptual Loss using Wasserstein Distance for Speech" Enhancement"*
+This fork updates the project dependencies of the [official implementation](https://github.com/aleXiehta/PhoneFortifiedPerceptualLoss) of *"Improving Perceptual Quality by Phone-Fortified Perceptual Loss using Wasserstein Distance for Speech Enhancement"*, and makes minor modifications to the parts that cause errors due to out-of-date versions, so that they are sufficient to operate correctly.
 
 ## Requirements
-- pytorch 1.6
-- torchcontrib 0.0.2
-- torchaudio 0.6.0
-- pesq 0.0.1
-- colorama 0.4.3
-- fairseq 0.9.0
-- geomloss 0.2.3
+```
+poetry install
+```
 
 ## Data preparation
 #### Enhancement model parameters and the *wav2vec* pre-trained model
